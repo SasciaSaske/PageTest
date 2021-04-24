@@ -20,7 +20,7 @@
   $(document).ready(function() {
     $.ajax({
         type: "GET",
-        url: "ExpressCountries.csv",
+        url: "http://sasciasaske.github.io/PageTest/ExpressCountries.csv",
         dataType: "text/csv",
         success: function(data) {processData(data);}
      });
