@@ -24,7 +24,7 @@
 
 var sel = document.getElementById("countrySelect");
   
-d3.csv("http://sasciasaske.github.io/PageTest/CountryZone.csv").then(function(data)
+d3.csv("https://sasciasaske.github.io/PageTest/CountryZone.csv").then(function(data)
 {
 	for(var i = 0; i < data.length; i++)
 	{
@@ -44,7 +44,7 @@ function test()
 	var zip = document.getElementById("zipCode").value.split('-')[0].toUpperCase();
 	var isSurcharged = false;
 
-	d3.csv("http://sasciasaske.github.io/PageTest/CountryZip.csv").then(function(data)
+	d3.csv("https://sasciasaske.github.io/PageTest/CountryZip.csv").then(function(data)
   {
 		for(var i = 0; i < data.length; i++)
 		{
