@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ilabarattolo Etsy Express Calculator</title>
+</head>
+<body>
+
+<span>Country:</span>
+<br>
+<select id="countrySelect"></select>
+<br>
+<span>Postal Code:</span>
+<br>
+<input type="text" id="zipCode"/>
+<br>
+<button onclick="test()">Calulate Surcharge</button>
+<br>
+<h2 id="result"></h2>
+  
+
+<script src="https://d3js.org/d3-dsv.v2.min.js"></script>
+<script src="https://d3js.org/d3-fetch.v2.min.js"></script>
+<script>
+
+var sel = document.getElementById("countrySelect");
+  
+d3.csv("http://sasciasaske.github.io/PageTest/CountryZone.csv").then(function(data)
+{
+	for(var i = 0; i < data.length; i++)
+	{
+    var opt = data[i];
+    var el = document.createElement("option");
+    el.textContent = opt.Country;
+    var obj = {Code: opt.Code, Zone: opt.Zone};
+    el.value = JSON.stringify(obj);
+    sel.appendChild(el);
+	}
+
+});
+
+function test()
+{
+	var obj = JSON.parse(sel.value);
+	var zip = document.getElementById("zipCode").value.split('-')[0].toUpperCase();
+	var isSurcharged = false;
+
+	d3.csv("http://sasciasaske.github.io/PageTest/CountryZip.csv").then(function(data)
+  {
+		for(var i = 0; i < data.length; i++)
+		{
+			if(data[i].Code == obj.Code)
+			{
+      	if(obj.Code == "GB")
+        {
+		var lowZip = data[i].ZipLow.split(/(\d+)/);
+		var highZip = data[i].ZipHigh.split(/(\d+)/);
+		var myZip = zip.split(' ')[0].split(/(\d+)/);
+
+        	if(lowZip[0] == myZip[0] && (lowZip.length == 1 || (parseInt(lowZip[1]) <= parseInt(myZip[1]) && parseInt(myZip[1]) <= parseInt(highZip[1]))))
+{
+isSurcharged = true;
+							break;
+}
+        }
+      	else if(obj.Code == "CA")
+        {
+var myZipString = zip.replace(/\s+/g, '');
+		var lowZip = "";
+		var highZip = "";
+		var myZip = "";
+
+		for(var j = 0; j < 6; j++)
+{
+if(j%2==0)
+{
+	lowZip += (parseInt(data[i].ZipLow[j], 36) - 9).toLocaleString('en-US', {minimumIntegerDigits: 2});
+	highZip += (parseInt(data[i].ZipHigh[j], 36) - 9).toLocaleString('en-US', {minimumIntegerDigits: 2});
+	myZip += (parseInt(myZipString[j], 36) - 9).toLocaleString('en-US', {minimumIntegerDigits: 2});}
+else
+{
+	lowZip += data[i].ZipLow[j];
+	highZip += data[i].ZipHigh[j];
+	myZip += myZipString[j];
+}
+
+
+}
+	
+	if(parseInt(lowZip) <= parseInt(myZip) && parseInt(myZip) <= parseInt(highZip))
+	{
+console.log(lowZip);
+console.log(myZip);
+console.log(highZip);
+	isSurcharged = true;
+							break;	
+}
+
+
+  /*     
+		var myZip = zip.replace(/\s+/g, '');
+
+        	for(var j = 0; j < 6; j++)
+          {
+          	if(data[i].ZipLow[j] == myZip[j] || myZip[j] == data[i].ZipHigh[j])
+            	{	
+			if(j==5)
+			{
+				isSurcharged = true;
+							break;
+			}
+		}
+          
+          	else if(data[i].ZipLow[j] < myZip[j] && myZip[j] < data[i].ZipHigh[j])
+            {
+            	isSurcharged = true;
+							break;	
+            }
+else
+break;
+          }
+          
+          if(isSurcharged)
+          	break;
+          */
+        }
+      	else if(data[i].ZipLow = "" || (parseInt(data[i].ZipLow) <= zip && zip <= parseInt(data[i].ZipHigh)))
+				{
+					isSurcharged = true;
+					break;	
+				}
+			}
+		}
+
+		var zones = [
+		["2","3","4","8"],
+		["5"],
+		["41","42","12"],
+		["9"],
+		["10"],
+		["6","11"]
+		];
+
+		var names = ["EUR1+NA","EUR2+UK","EUR3","ROW1","ROW2","ROW3"];
+
+		var text;
+
+		for(var i = 0; i < zones.length; i++)
+		{
+			if(zones[i].includes(obj.Zone))
+			{
+				text = names[i];
+			}
+		}
+
+		if(isSurcharged)
+    {
+			text += " NON-URBAN";
+		}
+
+		console.log(text);
+		console.log(zip);
+		console.log(obj.Code);
+		console.log(obj.Zone);
+		console.log(isSurcharged);
+
+		document.getElementById("result").innerHTML = text;
+
+	});
+}
+
+</script>
+
+</body>
+</html>
