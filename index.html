@@ -28,7 +28,7 @@
 	<br>
 	<h3 id="result" class="element">---</h2>
 
-<p class="info">test3
+<p class="info">test4
 	<br>blablablabllablablablablablalbalblablllbda
 	<br>blablablabllablablablablablalbalblablllbda</p>
 
@@ -163,14 +163,7 @@ function getVariationName()
 			variationName += " NON-URBAN";
 		}
 
-		// console.log(variationName);
-		// console.log(code);
-		// console.log(zone);
-		// console.log(zip);
-		// console.log(isSurcharged);
-
 		document.getElementById("result").innerHTML = variationName;
-
 	});
 }
 
@@ -204,7 +197,11 @@ function getVariationName()
 
 .main
 {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 	text-align: center;
+	width: 300px;
 	/* position: relative; */
 	/* justify-content: space-between; */
 	/* display: block; */
@@ -224,6 +221,7 @@ function getVariationName()
 	padding-top: 10px;
 	padding-bottom: 10px;
 	text-transform: uppercase;
+	width: 100%;
 
 	text-align: center;
 	text-align-last: center;
@@ -252,7 +250,7 @@ button
 	outline: none;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	width: 320px;
+	width: 100%;
 
 	text-transform: uppercase;
 	text-align: center;
@@ -270,26 +268,6 @@ button:hover
 button:active
 {
 	background-color: #ca5b7c;
-}
-
-input
-{
-	/* font-family: 'Open Sans', sans-serif; */
-	width: 300px;
-}
-
-select
-{
-    /* text-align-last:center; */
-	/* text-align: center; */
-	width: 320px;
-	/* -webkit-appearance: none;
-	-moz-appearance: none;
-    appearance: none;
-
-	-webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 0px; */
 }
 
 .select-wrapper {
@@ -349,22 +327,16 @@ body
 		width: 80%;
 	}
 
-	.input
+	.main
 	{
 		width: 100%;
+	}
+
+	.input
+	{
 		padding-top: 2%;
 		padding-bottom: 2%;
 		font-size: 5vw;
-	}
-
-	input
-	{
-		/* width: 100%; */
-	}
-
-	select
-	{
-		/* width: 100%; */
 	}
 
 	.select-wrapper:after
@@ -392,6 +364,16 @@ body
 		padding-bottom: 30px;
 		width: 100%;
 		font-size: 5vw;
+	}
+
+	h3
+	{
+		font-size: 8vw;
+	}
+
+	p
+	{
+		font-size: 4vw;
 	}
 
 
