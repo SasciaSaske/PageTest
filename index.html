@@ -12,11 +12,16 @@
 <div class="main">
 	<label class="element">Country</label>
 	<br>
-	<select id="countrySelect" class="element input"></select>
+	<div class="select-wrapper">
+		<select id="countrySelect" class="element input">
+			<option value="" disabled selected>Select Country</option>
+		</select>
+	</div>
 	<br>
 	<label class="element">Postal Code</label>
 	<br>
 	<input type="text" id="zipCode" class="element input"/>
+	<!-- <input type="text" placeholder="Enter Postal Code" id="zipCode" class="element input"/> -->
 	<br>
 	<button onclick="getVariationName()" class="element">Calulate Surcharge</button>
 	<br>
@@ -33,7 +38,7 @@
 <script>
 
 var select = document.getElementById("countrySelect");
-  
+
 d3.csv("https://sasciasaske.github.io/PageTest/CountryZone.csv").then(function(datas)
 {
 	for(var i = 0; i < datas.length; i++)
@@ -102,18 +107,18 @@ function getVariationName()
 							myZip += zip[j];
 						}
 					}
-	
+
 					if(parseInt(lowZip) <= parseInt(myZip) && parseInt(myZip) <= parseInt(highZip))
 					{
 						isSurcharged = true;
-						break;	
+						break;
 					}
 
         		}
       			else if(data.ZipLow == "" || (parseInt(data.ZipLow) <= zip && zip <= parseInt(data.ZipHigh)))
 				{
 					isSurcharged = true;
-					break;	
+					break;
 				}
 			}
 		}
@@ -182,9 +187,9 @@ function getVariationName()
 .main
 {
 	text-align: center;
-	position: relative;
-	justify-content: space-between;
-	display: block;
+	/* position: relative; */
+	/* justify-content: space-between; */
+	/* display: block; */
 }
 
 .element
@@ -199,9 +204,11 @@ function getVariationName()
 	padding: 10px;
 	text-transform: uppercase;
 	text-align: center;
+	text-align-last: center;
 	color: #e9e9e9;
 
-	font-family: 'Open Sans', sans-serif;
+	/* font-family: 'Open Sans', sans-serif; */
+	font-family:cursive;
 	font-weight: 600;
 }
 
@@ -233,18 +240,34 @@ button:active
 
 input
 {
-	font-family: 'Open Sans', sans-serif;
+	/* font-family: 'Open Sans', sans-serif; */
 	width: 300px;
 }
 
 select, option
 {
-    text-align-last:center;
-	text-align: center;
+    /* text-align-last:center; */
+	/* text-align: center; */
 	width: 320px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
     appearance: none;
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.select-wrapper:after {
+    content: '\0025BC';
+    /* font: normal normal normal 12px/1 FontAwesome; */
+    color: #e9e9e9;
+    right: 20px;
+    top: 20px;
+    /* height: 2px; */
+    /* padding: 1px 0px 0px 8px; */
+    position: absolute;
+    pointer-events: none;
 }
 
 label
