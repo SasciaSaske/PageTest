@@ -20,7 +20,12 @@
 	<br>
 	<button onclick="getVariationName()" class="element">Calulate Surcharge</button>
 	<br>
-	<h3 id="result" class="element"></h2>
+	<h3 id="result" class="element">---</h2>
+
+<p class="info">blablablablablablablablablablabla
+	<br>blablablabllablablablablablalbalblablllbda
+	<br>blablablabllablablablablablalbalblablllbda</p>
+
 </div>
 
 <script src="https://d3js.org/d3-dsv.v2.min.js"></script>
@@ -216,6 +221,16 @@ button
 	font-weight: 400;
 }
 
+button:hover
+{
+	background-color: #da6c8d;
+}
+
+button:active
+{
+	background-color: #ca5b7c;
+}
+
 input
 {
 	font-family: 'Open Sans', sans-serif;
@@ -225,6 +240,7 @@ input
 select, option
 {
     text-align-last:center;
+	text-align: center;
 	width: 320px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -237,6 +253,14 @@ label
 	color: #ca5b7c;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
+}
+
+p
+{
+	font-size: 20px;
+	color: #ca5b7c;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
 }
 
 h3
